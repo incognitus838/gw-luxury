@@ -6,7 +6,9 @@ import { AREAS, fleet, formatNaira, getCar } from "../lib/fleet";
 
 const empty = {
   carId: "gwagon",
+  neededOn: "",
   duration: "12",
+  days: "3",
   area: "island",
   pickup: "",
   phone: "",
@@ -14,6 +16,32 @@ const empty = {
   name: "",
   additionalInfo: "",
 };
+
+const DURATIONS = [
+  { value: "12", label: "12 hours" },
+  { value: "24", label: "24 hours" },
+  { value: "enterprise", label: "Enterprise" },
+];
+
+function todayISO() {
+  const d = new Date();
+  return [
+    d.getFullYear(),
+    String(d.getMonth() + 1).padStart(2, "0"),
+    String(d.getDate()).padStart(2, "0"),
+  ].join("-");
+}
+
+function formatNeeded(iso) {
+  if (!iso) return "";
+  const d = new Date(`${iso}T00:00:00`);
+  if (Number.isNaN(d.getTime())) return iso;
+  return d.toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+}
 
 export default function BookingForm() {
   const params = useSearchParams();
@@ -30,10 +58,20 @@ export default function BookingForm() {
   const pradoAreaNote =
     car.id === "prado" && form.area !== "island" && form.area !== "airport";
 
+  const minDate = useMemo(() => todayISO(), []);
+  const isEnterprise = form.duration === "enterprise";
+
   const quote = useMemo(() => {
     if (form.duration === "24") return "24-hour rate confirmed after request";
+    if (form.duration === "enterprise") {
+      return "Enterprise rate confirmed after request";
+    }
     return `${formatNaira(car.rate12)} / 12 hours`;
   }, [car, form.duration]);
+
+  const lengthLabel = isEnterprise
+    ? `${form.days || "—"} day${form.days === "1" ? "" : "s"}`
+    : `${form.duration} hours`;
 
   function update(key, value) {
     setForm((f) => ({ ...f, [key]: value }));
@@ -75,9 +113,9 @@ export default function BookingForm() {
         <p className="book-note">{ref}</p>
         <p className="book-sent">
           {car.short}
-          {car.year ? ` ${car.year}` : ""} · {form.duration} hours · {quote}.
-          Chauffeur and fuel included. We will confirm and send the car to your
-          pickup address.
+          {car.year ? ` ${car.year}` : ""} · {formatNeeded(form.neededOn)} ·{" "}
+          {lengthLabel} · {quote}. Chauffeur and fuel included. We will confirm
+          and send the car to your pickup address.
         </p>
       </div>
     );
@@ -102,23 +140,17 @@ export default function BookingForm() {
           </select>
         </label>
 
-        <fieldset className="book-field">
-          <legend>Duration</legend>
-          <div className="book-pills">
-            {["12", "24"].map((h) => (
-              <label key={h} className={form.duration === h ? "is-on" : ""}>
-                <input
-                  type="radio"
-                  name="duration"
-                  value={h}
-                  checked={form.duration === h}
-                  onChange={() => update("duration", h)}
-                />
-                {h} hours
-              </label>
-            ))}
-          </div>
-        </fieldset>
+        <label className="book-field">
+          <span>Date needed</span>
+          <input
+            type="date"
+            value={form.neededOn}
+            min={minDate}
+            onChange={(e) => update("neededOn", e.target.value)}
+            required
+          />
+          {errors.neededOn ? <em className="book-err">{errors.neededOn}</em> : null}
+        </label>
 
         <label className="book-field">
           <span>Area of use</span>
@@ -134,6 +166,44 @@ export default function BookingForm() {
             ))}
           </select>
         </label>
+
+        <fieldset className="book-field book-field--full">
+          <legend>Duration</legend>
+          <div className="book-pills book-pills--duration">
+            {DURATIONS.map((d) => (
+              <label
+                key={d.value}
+                className={form.duration === d.value ? "is-on" : ""}
+              >
+                <input
+                  type="radio"
+                  name="duration"
+                  value={d.value}
+                  checked={form.duration === d.value}
+                  onChange={() => update("duration", d.value)}
+                />
+                {d.label}
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        {isEnterprise ? (
+          <label className="book-field">
+            <span>Number of days</span>
+            <input
+              type="number"
+              min={2}
+              max={90}
+              step={1}
+              inputMode="numeric"
+              value={form.days}
+              onChange={(e) => update("days", e.target.value)}
+              required
+            />
+            {errors.days ? <em className="book-err">{errors.days}</em> : null}
+          </label>
+        ) : null}
 
         <label className="book-field book-field--full">
           <span>Pickup address</span>
@@ -199,8 +269,12 @@ export default function BookingForm() {
 
       <aside className="book-aside">
         <p className="book-rate">
-          {formatNaira(car.rate12)}
-          <span> / 12 hours</span>
+          {isEnterprise ? "Quoted" : formatNaira(car.rate12)}
+          <span>
+            {isEnterprise
+              ? `Enterprise · ${form.days || "—"} days`
+              : " / 12 hours"}
+          </span>
         </p>
         {car.note ? <p className="book-note">{car.note}</p> : null}
         <ul className="book-includes">
@@ -212,6 +286,12 @@ export default function BookingForm() {
           <p className="book-warn">
             Published rates are for 12 hours. We will confirm the 24-hour rate
             after this request.
+          </p>
+        ) : null}
+        {isEnterprise ? (
+          <p className="book-warn">
+            Enterprise hire is quoted by the day. Tell us how many days you need
+            — we confirm the rate after this request.
           </p>
         ) : null}
         {pradoAreaNote ? (

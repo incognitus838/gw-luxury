@@ -99,16 +99,24 @@ button {
 }
 
 .hp-hero {
+  height: 100vh;
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 1fr 1.15fr;
+  grid-template-columns: minmax(280px, 0.9fr) minmax(0, 1.35fr);
+  grid-template-rows: 1fr auto;
+  grid-template-areas:
+    "copy still"
+    "cta cta";
   align-items: center;
-  gap: 40px;
-  padding: 120px 64px 64px;
+  column-gap: 32px;
+  row-gap: 8px;
+  padding: 120px 64px 72px;
 }
 
 .hp-hero-copy {
+  grid-area: copy;
   max-width: 520px;
+  align-self: center;
 }
 
 .hp-name {
@@ -137,7 +145,15 @@ button {
   line-height: 1.5;
   color: var(--text-cream-soft);
   max-width: 420px;
-  margin: 0 0 40px;
+  margin: 0;
+}
+
+.hp-deck > span {
+  display: block;
+}
+
+.hp-deck-break {
+  display: none;
 }
 
 .hp-cta {
@@ -149,6 +165,7 @@ button {
   font-size: 11px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
+  color: var(--text-cream);
   transition: background 0.4s ease, color 0.4s ease, border-color 0.4s ease;
 }
 
@@ -164,21 +181,37 @@ button {
 }
 
 .hp-hero-still {
+  grid-area: still;
   margin: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
   display: flex;
-  align-items: flex-end;
-  justify-content: center;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .hp-hero-still img {
-  width: 100%;
-  max-width: 920px;
+  width: auto;
   height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
   filter: drop-shadow(0 50px 80px rgba(0, 0, 0, 0.45));
+}
+
+.hp-hero-cta {
+  grid-area: cta;
+  display: flex;
+  justify-content: center;
+  padding-top: 0;
+  transform: translateY(-12px);
 }
 
 .hp-steps {
   padding: 96px 64px;
+  background: #0c0a0e;
+  border-top: 1px solid rgba(236, 228, 214, 0.08);
 }
 
 .hp-section-head {
@@ -192,11 +225,6 @@ button {
   font-size: clamp(28px, 3.2vw, 44px);
   line-height: 1.15;
   margin: 0;
-}
-
-.hp-steps {
-  background: #0c0a0e;
-  border-top: 1px solid rgba(236, 228, 214, 0.08);
 }
 
 .hp-steps-grid {
@@ -237,6 +265,8 @@ button {
   padding: 16px 24px;
   border-top: 1px solid rgba(236, 228, 214, 0.1);
   text-align: center;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
 }
 
 .hp-foot-copy {
@@ -245,26 +275,76 @@ button {
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--text-cream-faint);
-}
-
-.hp-orangered {
-  cursor: pointer;
   transition: color 0.3s ease;
 }
 
-.hp-orangered:hover {
+.hp-orangered {
+  color: inherit;
+}
+
+.hp-foot:hover {
+  border-top-color: orangered;
+}
+
+.hp-foot:hover .hp-foot-copy {
   color: orangered;
+}
+
+.hp-foot:hover .hp-orangered {
+  color: #ffef00;
+  animation: canary-blink 0.7s steps(1, end) infinite;
+}
+
+@keyframes canary-blink {
+  0%, 49% {
+    color: #ffef00;
+  }
+  50%, 100% {
+    color: orangered;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hp-foot:hover .hp-orangered {
+    animation: none;
+    color: #ffef00;
+  }
 }
 
 @media (max-width: 1024px) {
   .hp-hero {
-    grid-template-columns: 1fr;
-    padding: 120px 32px 48px;
+    height: auto;
     min-height: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 120px 32px 48px;
     gap: 24px;
+    text-align: center;
+    align-items: center;
+  }
+  .hp-hero-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+  .hp-deck {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 34ch;
   }
   .hp-hero-still {
-    order: -1;
+    width: min(980px, 100%);
+    height: auto;
+    justify-content: center;
+  }
+  .hp-hero-still img {
+    width: 100%;
+    max-height: none;
   }
   .hp-steps,
   .hp-foot,
@@ -272,8 +352,17 @@ button {
     padding-left: 32px;
     padding-right: 32px;
   }
+  .hp-section-head,
+  .hp-steps {
+    text-align: center;
+  }
   .hp-steps-grid {
     grid-template-columns: 1fr;
+    justify-items: center;
+  }
+  .hp-steps-grid p {
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -292,6 +381,13 @@ button {
   }
   .hp-name {
     font-size: clamp(48px, 18vw, 72px);
+  }
+  .hp-deck {
+    max-width: min(34ch, 100%);
+    font-size: 17px;
+  }
+  .hp-deck-break {
+    display: block;
   }
   .hp-cta {
     min-height: 48px;

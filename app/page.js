@@ -28,13 +28,13 @@ export default function Home() {
             <span>Luxury</span>
           </h1>
           <p className="hp-deck">
-            Chauffeur-driven motor cars. Fuel included.
-            Dispatched to your address.
+            <span>
+              Chauffeur-driven motor cars.{' '}
+              <span className="hp-deck-break" />
+              Fuel included.
+            </span>
+            <span>Dispatched to your address.</span>
           </p>
-          <Link href="/collection" className="hp-cta">
-            The fleet
-            <Arrow />
-          </Link>
         </div>
         <figure className="hp-hero-still">
           <img
@@ -44,6 +44,12 @@ export default function Home() {
             height={1080}
           />
         </figure>
+        <div className="hp-hero-cta">
+          <Link href="/collection" className="hp-cta">
+            The fleet
+            <Arrow />
+          </Link>
+        </div>
       </section>
 
       <section className="hp-steps">

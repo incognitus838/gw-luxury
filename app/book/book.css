@@ -14,7 +14,7 @@
 
 .book-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 22px 20px;
   min-width: 0;
 }
@@ -26,6 +26,7 @@
   margin: 0;
   padding: 0;
   border: 0;
+  min-width: 0;
 }
 
 .book-field--full {
@@ -86,11 +87,35 @@
   color: var(--text-cream);
 }
 
+.book-field input[type="date"] {
+  color-scheme: dark;
+  min-height: 48px;
+}
+
+.book-field input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.85);
+  cursor: pointer;
+}
+
+.book-field input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.book-field input[type="number"]::-webkit-outer-spin-button,
+.book-field input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .book-pills {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
   min-width: 0;
+}
+
+.book-pills--duration {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .book-pills label {
@@ -233,6 +258,12 @@
   .book-form,
   .book-grid {
     grid-template-columns: 1fr;
+  }
+  .book-pills--duration {
+    grid-template-columns: 1fr 1fr;
+  }
+  .book-pills--duration label:last-child {
+    grid-column: 1 / -1;
   }
   .book-aside {
     position: static;

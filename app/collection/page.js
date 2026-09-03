@@ -13,7 +13,7 @@ export const metadata = {
 
 export default function CollectionPage() {
   return (
-    <main className="page site">
+    <main className="page site fleet-page">
       <Nav />
       <section className="site-main">
         <header className="hp-section-head">

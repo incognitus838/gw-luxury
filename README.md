@@ -16,3 +16,9 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
+
+## Inbox
+
+House requests live at [http://localhost:3000/admin](http://localhost:3000/admin).
+
+Set `ADMIN_PASSWORD` in `.env.local`. In development the fallback password is `orangered`. Production will not start the inbox without the env var. The inbox is not linked from the public site.

@@ -1,3 +1,30 @@
+.fleet-page {
+  height: 100vh;
+  min-height: 100vh;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.fleet-page .site-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 0;
+  padding: 88px 48px 12px;
+}
+
+.fleet-page .hp-section-head {
+  margin-bottom: 16px;
+  flex-shrink: 0;
+}
+
+.fleet-page .hp-foot {
+  flex-shrink: 0;
+}
+
 .row {
   width: 100%;
   max-width: 1840px;
@@ -73,10 +100,11 @@
 .car {
   position: relative;
   aspect-ratio: 4 / 3;
-  min-height: 320px;
+  min-height: 0;
+  height: min(38vh, 320px);
   cursor: pointer;
   margin: 0;
-  padding-bottom: 36px;
+  padding-bottom: 28px;
   outline: none;
 }
 
@@ -188,12 +216,21 @@
 }
 
 @media (max-width: 760px) {
+  .fleet-page {
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+  .fleet-page .site-main {
+    padding: 96px 20px 32px;
+  }
   .row {
     grid-template-columns: 1fr;
     gap: 48px;
   }
   .car {
     aspect-ratio: 16 / 10;
+    height: auto;
     min-height: 200px;
   }
   .fleet-book {
