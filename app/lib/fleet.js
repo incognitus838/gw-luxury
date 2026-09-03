@@ -1,11 +1,11 @@
 export const BOOKING_EMAIL = "bookings@gwluxury.com";
 
 export const AREAS = [
-  { value: "island", label: "Lagos Island (VI, Ikoyi, Lagos Island)" },
+  { value: "island", label: "Lagos Island" },
   { value: "airport", label: "Airport" },
   { value: "lekki", label: "Lekki" },
   { value: "mainland", label: "Mainland" },
-  { value: "other", label: "Other / specify in pickup" },
+  { value: "other", label: "Other" },
 ];
 
 export const fleet = [

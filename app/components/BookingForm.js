@@ -94,9 +94,8 @@ export default function BookingForm() {
           >
             {fleet.map((c) => (
               <option key={c.id} value={c.id}>
-                {c.name}
-                {c.year ? ` ${c.year}` : ""} — {formatNaira(c.rate12)} / 12 hrs
-                {c.note ? ` (${c.note})` : ""}
+                {c.short}
+                {c.year ? ` ${c.year}` : ""}
               </option>
             ))}
           </select>
@@ -141,7 +140,7 @@ export default function BookingForm() {
             type="text"
             value={form.pickup}
             onChange={(e) => update("pickup", e.target.value)}
-            placeholder="The car and driver come to this address"
+            placeholder="Street address"
             required
             autoComplete="street-address"
           />

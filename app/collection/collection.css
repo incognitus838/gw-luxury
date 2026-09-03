@@ -190,11 +190,16 @@
 @media (max-width: 760px) {
   .row {
     grid-template-columns: 1fr;
-    gap: clamp(40px, 8vw, 72px);
+    gap: 48px;
   }
   .car {
-    aspect-ratio: 16 / 11;
-    min-height: 220px;
+    aspect-ratio: 16 / 10;
+    min-height: 200px;
+  }
+  .fleet-book {
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
   }
 }
 
