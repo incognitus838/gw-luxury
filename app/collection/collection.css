@@ -1,0 +1,206 @@
+.row {
+  width: 100%;
+  max-width: 1840px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(28px, 4vw, 56px);
+  align-items: start;
+}
+
+.fleet-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fleet-meta {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 8px 12px;
+}
+
+.fleet-name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(22px, 2vw, 30px);
+  letter-spacing: 0.04em;
+  color: var(--text-cream);
+}
+
+.fleet-name span {
+  font-family: var(--font-body);
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--text-cream-faint);
+}
+
+.fleet-price {
+  margin: 4px 0 0;
+  font-family: var(--font-body);
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  color: var(--text-cream);
+}
+
+.fleet-price span,
+.fleet-inc,
+.fleet-note {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-cream-faint);
+}
+
+.fleet-note {
+  color: var(--accent-champagne);
+  margin: 0;
+}
+
+.fleet-inc {
+  margin: 0;
+}
+
+.fleet-book {
+  margin-top: 16px;
+}
+
+.car {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  min-height: 320px;
+  cursor: pointer;
+  margin: 0;
+  padding-bottom: 36px;
+  outline: none;
+}
+
+.view {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 36px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: drop-shadow(0 40px 60px rgba(0, 0, 0, 0.5));
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+  transform: scale(1);
+  transform-origin: 50% 78%;
+  will-change: opacity, transform, filter;
+  transition:
+    opacity 0.85s ease,
+    transform 0.95s cubic-bezier(0.4, 0, 0.2, 1),
+    filter 0.95s ease;
+}
+
+.view-3q {
+  opacity: 1;
+  z-index: 1;
+}
+
+.view-front {
+  opacity: 0;
+  z-index: 2;
+}
+
+.car:hover .view,
+.car:focus-within .view,
+.car.is-on .view {
+  transform: scale(1.06);
+  filter: drop-shadow(0 50px 80px rgba(0, 0, 0, 0.65));
+  transition:
+    opacity 0.55s ease,
+    transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1),
+    filter 0.6s ease;
+}
+
+.car-car2 .view {
+  transform: scale(1.14);
+}
+.car-car2:hover .view,
+.car-car2:focus-within .view,
+.car-car2.is-on .view {
+  transform: scale(1.21);
+}
+
+.car:hover .view-3q,
+.car:focus-within .view-3q,
+.car.is-on .view-3q {
+  opacity: 0;
+}
+
+.car:hover .view-front,
+.car:focus-within .view-front,
+.car.is-on .view-front {
+  opacity: 1;
+}
+
+.car-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 4px;
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--text-cream-faint);
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+  pointer-events: none;
+}
+
+.car:hover .car-caption,
+.car:focus-within .car-caption,
+.car.is-on .car-caption {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+.car:focus-within {
+  outline: none;
+}
+
+@media (max-width: 1024px) {
+  .row {
+    gap: clamp(20px, 4vw, 40px);
+  }
+  .car {
+    aspect-ratio: 5 / 4;
+  }
+}
+
+@media (max-width: 760px) {
+  .row {
+    grid-template-columns: 1fr;
+    gap: clamp(40px, 8vw, 72px);
+  }
+  .car {
+    aspect-ratio: 16 / 11;
+    min-height: 220px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .view,
+  .car-caption {
+    transition: none;
+  }
+}

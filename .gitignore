@@ -1,0 +1,11 @@
+node_modules
+.next
+.next.*
+.vercel
+.DS_Store
+.workbuddy-ai
+data/bookings.json
+*.log
+.env
+.env*.local
+public/cars/_originals
