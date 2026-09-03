@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Nav from "../components/Nav";
+import Footer from "../components/Footer";
 import CarFigure from "../components/CarFigure";
 import { fleet, formatNaira } from "../lib/fleet";
 import "./collection.css";
@@ -45,6 +46,7 @@ export default function CollectionPage() {
           ))}
         </div>
       </section>
+      <Footer />
     </main>
   );
 }

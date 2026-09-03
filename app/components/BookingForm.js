@@ -12,6 +12,7 @@ const empty = {
   phone: "",
   email: "",
   name: "",
+  additionalInfo: "",
 };
 
 export default function BookingForm() {
@@ -182,6 +183,17 @@ export default function BookingForm() {
             autoComplete="email"
           />
           {errors.email ? <em className="book-err">{errors.email}</em> : null}
+        </label>
+
+        <label className="book-field book-field--full">
+          <span>Additional info <em className="book-optional">(optional)</em></span>
+          <textarea
+            value={form.additionalInfo}
+            onChange={(e) => update("additionalInfo", e.target.value)}
+            rows={4}
+            maxLength={2000}
+            placeholder="Anything else we should know"
+          />
         </label>
       </div>
 

@@ -24,6 +24,7 @@ function validate(body) {
   const name = String(body.name ?? "").trim();
   const phone = String(body.phone ?? "").trim();
   const email = String(body.email ?? "").trim().toLowerCase();
+  const additionalInfo = String(body.additionalInfo ?? "").trim().slice(0, 2000);
 
   if (!CAR_IDS.has(carId)) errors.carId = "Choose a vehicle.";
   if (duration !== "12" && duration !== "24") {
@@ -40,7 +41,7 @@ function validate(body) {
 
   return {
     errors,
-    data: { carId, duration, area, pickup, name, phone, email },
+    data: { carId, duration, area, pickup, name, phone, email, additionalInfo },
   };
 }
 

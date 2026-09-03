@@ -40,8 +40,22 @@
   color: var(--text-cream-faint);
 }
 
+.book-optional {
+  letter-spacing: 0.12em;
+  text-transform: none;
+  font-style: normal;
+  color: var(--text-cream-faint);
+}
+
+.book-field textarea {
+  resize: vertical;
+  min-height: 96px;
+  font-family: inherit;
+}
+
 .book-field input,
-.book-field select {
+.book-field select,
+.book-field textarea {
   font: inherit;
   font-size: 16px;
   width: 100%;
@@ -56,12 +70,14 @@
   transition: border-color 0.3s ease;
 }
 
-.book-field input::placeholder {
+.book-field input::placeholder,
+.book-field textarea::placeholder {
   color: var(--text-cream-faint);
 }
 
 .book-field input:focus,
-.book-field select:focus {
+.book-field select:focus,
+.book-field textarea:focus {
   border-color: var(--accent-champagne);
 }
 
