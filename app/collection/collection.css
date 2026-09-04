@@ -78,10 +78,10 @@
 .fleet-price span,
 .fleet-inc,
 .fleet-note {
-  font-size: 10px;
-  letter-spacing: 0.22em;
+  font-size: 11px;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--text-cream-faint);
+  color: var(--text-cream-soft);
 }
 
 .fleet-note {

@@ -35,10 +35,10 @@
 
 .book-field span,
 .book-field legend {
-  font-size: 10px;
-  letter-spacing: 0.28em;
+  font-size: 11px;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--text-cream-faint);
+  color: var(--text-cream-soft);
 }
 
 .book-optional {
