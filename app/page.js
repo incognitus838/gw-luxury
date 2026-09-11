@@ -10,7 +10,7 @@ const Arrow = () => (
 );
 
 const steps = [
-  { n: "01", title: "Select a motor car", body: "G-Wagon, Escalade, or Prado. Twelve-hour rates published." },
+  { n: "01", title: "Select a motor car", body: "Seven motor cars, from Prado to Maybach. Twelve-hour rates published where listed." },
   { n: "02", title: "Confirm hours and area", body: "Twelve or twenty-four hours. Island, airport, or mainland." },
   { n: "03", title: "We dispatch to you", body: "Chauffeur and fuel included. The car arrives at your pickup address." },
 ];
@@ -38,8 +38,8 @@ export default function Home() {
         </div>
         <figure className="hp-hero-still">
           <img
-            src="/cars/car1-threequarter.png?v=4"
-            alt="Mercedes-Benz G-Class 2022"
+            src="/cars/g63-threequarter.png?v=10"
+            alt="Mercedes-AMG G 63 2021"
             width={1920}
             height={1080}
           />

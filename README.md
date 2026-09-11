@@ -2,11 +2,15 @@
 
 Chauffeur-driven motor cars in Lagos. Driver and fuel included. Dispatched to your pickup address.
 
-## Fleet (12-hour rates)
+## Fleet
 
-- Mercedes-Benz G-Class 2022 — NGN 1,000,000
-- Cadillac Escalade — NGN 650,000
-- Toyota Land Cruiser Prado 2020 — NGN 150,000 (Island & Airport)
+- Mercedes-AMG GLE 53 2021 — quoted
+- Mercedes-AMG G 63 2021 — NGN 1,000,000 / 12 hours
+- Toyota Land Cruiser Prado 2020 — NGN 150,000 / 12 hours (Island & Airport)
+- Mercedes-Benz Maybach Viano — quoted
+- Cadillac Escalade 2022 — NGN 650,000 / 12 hours
+- Lexus LX 600 2024 — quoted
+- Mercedes-Maybach S-Class 2021 — quoted
 
 ## Local
 

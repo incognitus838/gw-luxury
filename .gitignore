@@ -9,3 +9,4 @@ data/bookings.json
 .env
 .env*.local
 public/cars/_originals
+public/cars/_refs

@@ -20,7 +20,7 @@ export default function CarFigure({ label, file }) {
       onBlur={() => setOn(false)}
     >
       <img
-        src={`/cars/${file}-threequarter.png?v=5`}
+        src={`/cars/${file}-threequarter.png?v=10`}
         alt=""
         className="view view-3q"
         width={1920}
@@ -28,7 +28,7 @@ export default function CarFigure({ label, file }) {
         draggable="false"
       />
       <img
-        src={`/cars/${file}-front.png?v=5`}
+        src={`/cars/${file}-front.png?v=10`}
         alt=""
         className="view view-front"
         width={1920}

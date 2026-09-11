@@ -66,6 +66,7 @@ export default function BookingForm() {
     if (form.duration === "enterprise") {
       return "Enterprise rate confirmed after request";
     }
+    if (!car.rate12) return "12-hour rate confirmed after request";
     return `${formatNaira(car.rate12)} / 12 hours`;
   }, [car, form.duration]);
 
@@ -269,7 +270,7 @@ export default function BookingForm() {
 
       <aside className="book-aside">
         <p className="book-rate">
-          {isEnterprise ? "Quoted" : formatNaira(car.rate12)}
+          {isEnterprise || !car.rate12 ? "Quoted" : formatNaira(car.rate12)}
           <span>
             {isEnterprise
               ? `Enterprise · ${form.days || "—"} days`
@@ -292,6 +293,12 @@ export default function BookingForm() {
           <p className="book-warn">
             Enterprise hire is quoted by the day. Tell us how many days you need
             — we confirm the rate after this request.
+          </p>
+        ) : null}
+        {!isEnterprise && !car.rate12 ? (
+          <p className="book-warn">
+            This motor car is quoted after your request. Twelve-hour rates are
+            published for G-Wagon, Escalade, and Prado.
           </p>
         ) : null}
         {pradoAreaNote ? (

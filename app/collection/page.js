@@ -8,7 +8,7 @@ import "./collection.css";
 export const metadata = {
   title: "GW Luxury · The Fleet",
   description:
-    "G-Wagon 2022, Escalade, and Prado 2020. Chauffeur and fuel included. 12-hour rates.",
+    "Seven motor cars. Chauffeur and fuel included. Twelve-hour rates published where listed.",
 };
 
 export default function CollectionPage() {
@@ -18,7 +18,7 @@ export default function CollectionPage() {
       <section className="site-main">
         <header className="hp-section-head">
           <p className="hp-kicker">The fleet</p>
-          <h1 className="hp-section-title">Three motor cars. Twelve-hour rates.</h1>
+          <h1 className="hp-section-title">Seven motor cars.</h1>
         </header>
         <div className="row">
           {fleet.map((car) => (
@@ -34,7 +34,7 @@ export default function CollectionPage() {
                 </h2>
                 <p className="fleet-price">
                   {formatNaira(car.rate12)}
-                  <span> / 12 hours</span>
+                  <span>{car.rate12 ? " / 12 hours" : " / 12 hours on request"}</span>
                 </p>
                 {car.note ? <p className="fleet-note">{car.note}</p> : null}
                 <p className="fleet-inc">Chauffeur &amp; fuel included</p>
